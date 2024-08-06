@@ -12,3 +12,5 @@ createInertiaApp({
       .mount(el)
   },
 })
+
+console.log("test")
