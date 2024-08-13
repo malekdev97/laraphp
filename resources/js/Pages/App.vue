@@ -1,18 +1,14 @@
 <template>
-<h1>Vue {{ name }}</h1>
-<p><Link href="/users">Users</Link></p>
+<h1>Home</h1>
+<Nav />
 
 </template>
 <script>
-import { Link } from '@inertiajs/vue3';
+import Nav from '../Shared/Nav.vue';
 
 export default {
-    props: {
-        name: String
-    },
     components: {
-        Link
+        Nav
     }
-}
-
+};
 </script>
