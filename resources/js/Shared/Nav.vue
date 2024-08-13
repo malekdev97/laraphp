@@ -2,8 +2,8 @@
 
 <ul>
     <li><Link href="/">Home</Link></li>
-    <li><Link href="/Users">Users</Link></li>
-    <li><Link href="/Settings">Settings</Link></li>
+    <li><Link href="/users">Users</Link></li>
+    <li><Link href="/settings">Settings</Link></li>
 </ul>
 
 </template>
