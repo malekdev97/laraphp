@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -20,7 +21,32 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        DB::beginTransaction();
+
+        try {
+            $post = Post::create([
+            'name' => $request->name
+            ]);
+
+            $post->save();
+
+            // raise an exception
+            // throw new \Exception("Try next time");
+
+            DB::commit();
+
+            return response()->json([
+                'message' => 'Post created successfully',
+                'post' => $post
+            ]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'message' => 'Post creation failed',
+                'error' => $e->getMessage()
+            ], 400);
+        }
 
     }
 
