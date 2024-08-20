@@ -14,16 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return inertia('App', [
-        'name' => 'John Doe']
-    );
+    return view('index');
 });
-
-Route::get('/users', function () {
-    return inertia('Users');
-});
-
-Route::get('/settings', function () {
-    return inertia('Settings');
-    }
-);
