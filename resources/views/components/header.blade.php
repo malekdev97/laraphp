@@ -10,6 +10,7 @@
                 <a href="/" class="{{ request()->is('/') ? 'text-cyan-600'  : '' }} mr-5 font-bold hover:text-neutral-900 dark:hover:text-neutral-300 underline">Home</a>
                 <a href="/about" class="{{ request()->is('about') ? 'text-cyan-600'  : '' }} mr-5 font-bold hover:text-neutral-900 dark:hover:text-neutral-300 underline">About</a>
                 <a href="/contact" class="{{ request()->is('contact') ? 'text-cyan-600'  : '' }} mr-5 font-bold hover:text-neutral-900 dark:hover:text-neutral-300 underline">Contact</a>
+                <a href="/jobs" class="{{ request()->is('jobs') ? 'text-cyan-600'  : '' }} mr-5 font-bold hover:text-neutral-900 dark:hover:text-neutral-300 underline">Jobs</a>
             </nav>
             <button class="moon h-12 w-12 rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-neutral-700">
                 <svg class="fill-violet-700 block dark:hidden" fill="currentColor" viewBox="0 0 20 20">
