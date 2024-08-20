@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,7 @@
     @vite('resources/js/app.js')
     <title>{{ config('app.name', 'default') }}</title>
 </head>
-<body class="bg-neutral-200 dark:bg-neutral-900 dark:text-neutral-950 text-neutral-950">
+<body class="h-full bg-neutral-200 dark:bg-neutral-900 dark:text-neutral-950 text-neutral-950">
 
     <x-header></x-header>
 

@@ -22,5 +22,6 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Blade::component('header', 'components.header');
+        Blade::component('nav-link', 'components.nav-link');
     }
 }
