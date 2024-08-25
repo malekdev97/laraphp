@@ -5,15 +5,45 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Services\PostService;
+use \Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class PostController extends Controller
 {
+    private $postService;
+
+    public function __construct(PostService $postService)
+    {
+        $this->postService = $postService;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         //
+        return $this->postService->getAllPosts();
+    }
+
+    public function findPostById($id)
+    {
+        try {
+            $post = $this->postService->getPostById($id);
+
+            return response()->json([
+                'message' => 'Post found',
+                'post' => $post,
+                'code' => 200
+            ]);
+        }
+        catch (\Exception)
+        {
+            return response()->json([
+                'message' => "Post not found!",
+                'code' => 404
+            ]);
+        }
     }
 
     /**
@@ -25,14 +55,8 @@ class PostController extends Controller
         DB::beginTransaction();
 
         try {
-            $post = Post::create([
-            'name' => $request->name
-            ]);
 
-            $post->save();
-
-            // raise an exception
-            // throw new \Exception("Try next time");
+            $post = $this->postService->createPost($request->all());
 
             DB::commit();
 

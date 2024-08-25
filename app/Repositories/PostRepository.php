@@ -3,27 +3,28 @@
 namespace App\Repositories;
 // app/Services/PostServiceInterface.php
 use App\Models\Post;
+use Illuminate\Support\Collection;
 
-class PostRepository 
+class PostRepository
 {
-    public function getAll(): Collection 
+    public function getAll(): Collection
     {
         return Post::all();
     }
-    
-    public function createPost(array $data): Post 
+
+    public function createPost(array $data): Post
     {
         return Post::create($data);
     }
 
-    public function getPostById(int $id): Post 
+    public function getPostById(int $id)
     {
         return Post::find($id);
     }
 
-    public function updatePost(array $data, int $id): Post 
+    public function updatePost(array $data, int $id): Post
     {
-        $post = Post::fin($id);
+        $post = Post::find($id);
         $post->update($data);
         return $post;
     }
