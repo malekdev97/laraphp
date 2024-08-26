@@ -3,6 +3,7 @@
 namespace App\Repositories;
 // app/Services/PostServiceInterface.php
 use App\Models\Post;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Collection;
 
 class PostRepository
@@ -19,18 +20,23 @@ class PostRepository
 
     public function getPostById(int $id)
     {
-        return Post::find($id);
+        return Post::findOrFail($id);
     }
 
-    public function updatePost(array $data, int $id): Post
+    public function updatePost(array $data, int $id)
     {
-        $post = Post::find($id);
+        // throw exception if no post is found
+        $post = Post::findOrFail($id);
+
+        if (!$post) {
+            throw new ModelNotFoundException("Post not found");
+        }
         $post->update($data);
         return $post;
     }
 
-    public function deletePost(int $id): bool
+    public function deletePost(int $id)
     {
-        return Post::destory($id);
+        Post::destroy($id);
     }
 }

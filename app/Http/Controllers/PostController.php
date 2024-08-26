@@ -35,14 +35,14 @@ class PostController extends Controller
                 'message' => 'Post found',
                 'post' => $post,
                 'code' => 200
-            ]);
+            ], 200);
         }
         catch (\Exception)
         {
             return response()->json([
                 'message' => "Post not found!",
                 'code' => 404
-            ]);
+            ], 404);
         }
     }
 
@@ -88,13 +88,37 @@ class PostController extends Controller
     public function update(Request $request, post $post)
     {
         //
+        $post->update($request->all());
+
+        return response()->json([
+            'message' => 'Post updated successfully',
+            'post' => $post
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(post $post)
+    public function destroy($id)
     {
-        //
+
+        DB::beginTransaction();
+
+        try {
+
+            $this->postService->deletePost($id);
+
+            DB::commit();
+
+            return response()->json([
+                'message' => 'Post deleted successfully'
+            ]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'message' => 'Post deletion failed',
+                'error' => $e->getMessage()
+            ], 400);
+        }
     }
 }
